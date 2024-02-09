@@ -13,9 +13,7 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 8px;
 
-  border-style: solid;
-  border-width: 0px 0px 1px 0px;
-  border-color: var(--colors-white);
+  
   padding: 18px 14px 18px 14px;
 `;
 

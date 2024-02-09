@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 import { useCategories } from './use-categories';
-
 import { ButtonCategory } from "../../components/ButtonCategory";
 
 export const Wrapper = styled.div`
   width: 100%;
   height: 28px;
 
-  box-shadow: none;
   border-radius: var(--radii);
   border: 0;
 
