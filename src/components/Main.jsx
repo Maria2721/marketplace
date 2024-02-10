@@ -1,13 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.main`
-  padding: 0 0;
+	padding: 0 0;
 `;
 
 export const Main = ({ children }) => {
-    return (
-        <Wrapper>
-            {children}
-        </Wrapper>
-    );
+    return <Wrapper>{children}</Wrapper>;
 };

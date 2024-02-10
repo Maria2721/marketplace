@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { useProducts } from "./use-products";
 
-import { Card } from '../../components/Card';
+import { Card } from "../../components/Card";
 
 const Wrapper = styled.div`
-  width: 100%;
+	width: 100%;
 
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0;
 `;
 
 export const ProductsList = () => {
@@ -20,11 +20,7 @@ export const ProductsList = () => {
             {status === "loading" && <h2>Loading...</h2>}
 
             {status === "received" &&
-                products.map(item => (
-                    <Card
-                        key={item.id}
-                        {...item} />
-                ))}
+                products.map((item) => <Card key={item.id} {...item} />)}
         </Wrapper>
     );
 };

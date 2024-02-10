@@ -1,4 +1,5 @@
 {
-    "css.lint.unknownAtRules": "ignore",
-    "prettier.tabWidth": 2
+	"css.lint.unknownAtRules": "ignore",
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true
 }

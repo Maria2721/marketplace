@@ -7,19 +7,19 @@ import { productsReducer } from "./features/products/products-slice";
 import { categoriesReducer } from "./features/categories/categories-slice";
 
 export const store = configureStore({
-  reducer: {
-    products: productsReducer,
-    categories: categoriesReducer,
-  },
-  devTools: true,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      thunk: {
-        extraArgument: {
-          client: axios,
-          api,
-        },
-      },
-      serializableCheck: false,
-    }),
+	reducer: {
+		products: productsReducer,
+		categories: categoriesReducer,
+	},
+	devTools: true,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			thunk: {
+				extraArgument: {
+					client: axios,
+					api,
+				},
+			},
+			serializableCheck: false,
+		}),
 });

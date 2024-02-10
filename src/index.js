@@ -10,9 +10,9 @@ import { store } from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <BrowserRouter basename="/marketplace">
-      <App />
-    </BrowserRouter>
-  </Provider>
+	<Provider store={store}>
+		<BrowserRouter basename="/marketplace">
+			<App />
+		</BrowserRouter>
+	</Provider>
 );
