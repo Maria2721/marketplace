@@ -1,14 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import required modules
-import { Pagination } from "swiper/modules";
 
 import { ReactComponent as Star } from "../assets/imgs/star.svg";
 
@@ -80,6 +77,8 @@ const SwiperWrapper = styled.div`
 `;
 
 const CardInfo = styled.div`
+	width: 100%;
+	height: 100%;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: flex-start;
@@ -127,18 +126,8 @@ const CardTitle = styled.div`
 	letter-spacing: var(--ls-s);
 `;
 
-const CardDescription = styled.div`
-	color: var(--colors-graymain);
-
-	font-weight: var(--fw-xs);
-	font-size: var(--fs-xs);
-	line-height: var(--lh-xs);
-	letter-spacing: var(--ls-xs);
-`;
-
 const CardPrice = styled.div`
 	height: 24px;
-
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
@@ -153,6 +142,58 @@ const CardPrice = styled.div`
 	letter-spacing: var(--ls-s);
 `;
 
+const CardDescription = styled.div`
+	width: 100%;
+	height: 100%;
+	position: relative;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0;
+
+	color: var(--colors-graymain);
+	font-weight: var(--fw-xs);
+	font-size: var(--fs-xs);
+	line-height: var(--lh-xs);
+	letter-spacing: var(--ls-xs);
+`;
+
+const CardReadMore = styled.button`
+	padding: 0;
+	background-color: inherit;
+	box-shadow: none;
+	border: 0;
+
+	font-weight: var(--fw-xs);
+	font-size: var(--fs-xs);
+	line-height: var(--lh-xs);
+	letter-spacing: var(--ls-xs);
+
+	color: var(--colors-bluelight);
+	cursor: pointer;
+
+	&:hover {
+		color: var(--colors-bluedark);
+		animation-timing-function: ease-out;
+		animation-duration: 300ms;
+	}
+`;
+
+const descriptionStyleText = {
+	WebkitLineClamp: 1,
+	WebkitBoxOrient: "vertical",
+	overflow: "hidden",
+	display: "-webkit-box",
+};
+
+const descriptionStyleBtn = {
+	position: "absolute",
+	bottom: "0px",
+	right: "0px",
+};
+
 export const Card = ({
 	title,
 	brand,
@@ -163,38 +204,54 @@ export const Card = ({
 	rating,
 	images,
 }) => {
-	const [read, setRead] = useState(false);
+	const [isRead, setIsRead] = useState(false);
+	const [showReadMoreBtn, setShowReadMoreBtn] = useState(false);
+
 	let prevPrice = Math.ceil((price * Number("1" + discountPercentage)) / 100);
+
+	const ref = useRef(null);
+
+	useEffect(() => {
+		if (ref.current) {
+			setShowReadMoreBtn(
+				ref.current.scrollHeight !== ref.current.clientHeight
+			);
+		}
+	}, []);
 
 	return (
 		<CardBody>
-			<CardDiscount>
-				<span>{discountPercentage}%</span>
-				<span>off sale</span>
-			</CardDiscount>
-			<SwiperWrapper>
-				<Swiper
-					slidesPerView={1}
-					loop={true}
-					pagination={{
-						clickable: true,
-					}}
-					modules={[Pagination]}
-				>
-					{images.map((el) => {
-						return (
-							<SwiperSlide>
-								<img
-									src={el}
-									alt={title}
-									width="288"
-									height="288"
-								/>
-							</SwiperSlide>
-						);
-					})}
-				</Swiper>
-			</SwiperWrapper>
+			{!isRead && (
+				<>
+					<CardDiscount>
+						<span>{discountPercentage}%</span>
+						<span>off sale</span>
+					</CardDiscount>
+					<SwiperWrapper>
+						<Swiper
+							slidesPerView={1}
+							loop={true}
+							pagination={{
+								clickable: true,
+							}}
+							modules={[Pagination]}
+						>
+							{images.map((el) => {
+								return (
+									<SwiperSlide>
+										<img
+											src={el}
+											alt={title}
+											width="288"
+											height="288"
+										/>
+									</SwiperSlide>
+								);
+							})}
+						</Swiper>
+					</SwiperWrapper>
+				</>
+			)}
 			<CardInfo>
 				<CardRating>
 					<Star />
@@ -203,7 +260,22 @@ export const Card = ({
 				<CardTitle>
 					{brand}&nbsp;{title}
 				</CardTitle>
-				<CardDescription>{description}</CardDescription>
+				<CardDescription>
+					<span
+						style={isRead ? null : descriptionStyleText}
+						ref={ref}
+					>
+						{description}
+					</span>
+					{showReadMoreBtn && (
+						<CardReadMore
+							onClick={() => setIsRead(!isRead)}
+							style={isRead ? null : descriptionStyleBtn}
+						>
+							{isRead ? "Hide description" : "Read more"}
+						</CardReadMore>
+					)}
+				</CardDescription>
 				<CardPrice>
 					<ButtonPrice price={price} />
 					<span style={{ textDecoration: "line-through" }}>
