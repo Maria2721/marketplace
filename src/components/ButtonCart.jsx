@@ -5,16 +5,18 @@ export const Button = styled.button`
 	width: 67px;
 	height: 28px;
 
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 4px;
+
 	padding: 6px 8px 6px 6px;
-	background-color: var(--colors-white);
 	box-shadow: none;
 	border-radius: var(--radii);
 	border: 0;
 
-	display: flex;
-	align-items: center;
-	gap: 4px;
-
+	background-color: var(--colors-white);
 	color: var(--colors-bluelight);
 	cursor: pointer;
 
@@ -24,19 +26,17 @@ export const Button = styled.button`
 		fill: var(--colors-bluelight);
 	}
 
-	span {
-		font-weight: var(--fw-m);
-		font-size: var(--fs-m);
-		line-height: var(--lh-m);
-		letter-spacing: var(--ls-m);
-	}
+	font-weight: var(--fw-m);
+	font-size: var(--fs-m);
+	line-height: var(--lh-m);
+	letter-spacing: var(--ls-m);
 `;
 
 export const ButtonCart = () => {
 	return (
 		<Button onClick={() => console.log("Open Cart!")}>
 			<Cart />
-			<span>cart</span>
+			cart
 		</Button>
 	);
 };

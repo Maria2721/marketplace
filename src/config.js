@@ -6,7 +6,7 @@ export const ALL_CATEGORIES = BASE_URL + "/categories";
 
 export const searchProducts = (q) => BASE_URL + "/search?q=" + q;
 
-export const filterProductsByCategories = (category) =>
+export const productsByCategory = (category) =>
 	BASE_URL + "/category/" + category;
 
 export const limitSkipSelectProducts = (limit, skip, select) =>

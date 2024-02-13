@@ -195,6 +195,7 @@ const descriptionStyleBtn = {
 };
 
 export const Card = ({
+	id,
 	title,
 	brand,
 	category,
@@ -236,9 +237,9 @@ export const Card = ({
 							}}
 							modules={[Pagination]}
 						>
-							{images.map((el) => {
+							{images.map((el, i) => {
 								return (
-									<SwiperSlide>
+									<SwiperSlide key={title + " " + i}>
 										<img
 											src={el}
 											alt={title}

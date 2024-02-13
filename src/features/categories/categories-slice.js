@@ -29,7 +29,6 @@ const categoriesSlice = createSlice({
 			})
 			.addCase(loadCategories.fulfilled, (state, action) => {
 				state.status = "received";
-				console.log(action.payload.data);
 				state.list = action.payload.data;
 			});
 	},
@@ -37,7 +36,6 @@ const categoriesSlice = createSlice({
 
 export const categoriesReducer = categoriesSlice.reducer;
 
-// selectors
 export const selectCategoriesInfo = (state) => ({
 	status: state.categories.status,
 	error: state.categories.error,

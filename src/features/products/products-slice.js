@@ -7,10 +7,46 @@ export const loadProducts = createAsyncThunk(
 	}
 );
 
+export const loadProductsByCategory = createAsyncThunk(
+	"@@products/load-products-by-category",
+	(category, { extra: { client, api } }) => {
+		return client.get(api.productsByCategory(category));
+	}
+);
+
+export const loadProductsBySearch = createAsyncThunk(
+	"@@products/load-products-by-search",
+	(search, { extra: { client, api } }) => {
+		return client.get(api.searchProducts(search));
+	}
+);
+
+export const loadProductsWithParam = createAsyncThunk(
+	"@@products/load-products-with-param",
+	({ limit, skip, select }, { extra: { client, api } }) => {
+		return client.get(api.limitSkipSelectProducts(limit, skip, select));
+	}
+);
+
 const initialState = {
 	status: "idle",
 	error: null,
 	list: [],
+};
+
+const setLoading = (state) => {
+	state.status = "loading";
+	state.error = null;
+};
+
+const setError = (state, action) => {
+	state.status = "rejected";
+	state.error = action.payload || action.meta.error;
+};
+
+const setData = (state, action) => {
+	state.status = "received";
+	state.list = action.payload.data.products;
 };
 
 const productsSlice = createSlice({
@@ -19,19 +55,15 @@ const productsSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
-			.addCase(loadProducts.pending, (state) => {
-				state.status = "loading";
-				state.error = null;
-			})
-			.addCase(loadProducts.rejected, (state, action) => {
-				state.status = "rejected";
-				state.error = action.payload || action.meta.error;
-			})
-			.addCase(loadProducts.fulfilled, (state, action) => {
-				state.status = "received";
-				console.log(action.payload.data);
-				state.list = action.payload.data.products;
-			});
+			.addCase(loadProducts.pending, setLoading)
+			.addCase(loadProducts.rejected, setError)
+			.addCase(loadProducts.fulfilled, setData)
+			.addCase(loadProductsByCategory.pending, setLoading)
+			.addCase(loadProductsByCategory.rejected, setError)
+			.addCase(loadProductsByCategory.fulfilled, setData)
+			.addCase(loadProductsBySearch.pending, setLoading)
+			.addCase(loadProductsBySearch.rejected, setError)
+			.addCase(loadProductsBySearch.fulfilled, setData);
 	},
 });
 
@@ -45,11 +77,3 @@ export const selectProductsInfo = (state) => ({
 });
 
 export const selectAllProducts = (state) => state.products.list;
-
-export const selectVisibleProducts = (state, { search = "", region = "" }) => {
-	return state.products.list.filter(
-		(country) =>
-			country.name.toLowerCase().includes(search.toLowerCase()) &&
-			country.region.includes(region)
-	);
-};

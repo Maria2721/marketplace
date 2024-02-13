@@ -12,15 +12,15 @@ const Wrapper = styled.div`
 `;
 
 export const ProductsList = () => {
-    const [products, { status, error }] = useProducts();
+	const [products, { status, error }] = useProducts();
 
-    return (
-        <Wrapper>
-            {error && <h2>Can't fetch data</h2>}
-            {status === "loading" && <h2>Loading...</h2>}
+	return (
+		<Wrapper>
+			{error && <h2>Can't fetch data</h2>}
+			{status === "loading" && <h2>Loading...</h2>}
 
-            {status === "received" &&
-                products.map((item) => <Card key={item.id} {...item} />)}
-        </Wrapper>
-    );
+			{status === "received" &&
+				products.map((item) => <Card key={item.title} {...item} />)}
+		</Wrapper>
+	);
 };

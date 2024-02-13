@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { Main } from "./components/Main";
-import { ControlsPanel } from "./features/controls/ControlsPanel";
+import { ControlsPanel } from "./components/ControlsPanel";
 import { Cart } from "./features/cart/Cart";
 import { Footer } from "./components/Footer";
 
@@ -23,7 +23,7 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<HomePage />} />
 					<Route
-						path="/category/:category"
+						path="?category=:category"
 						element={<CategoryPage />}
 					/>
 					<Route path="*" element={<NotFoundPage />} />

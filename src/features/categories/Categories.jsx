@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 import { useCategories } from "./use-categories";
+import { useCategory } from "../category/use-category";
 import { ButtonCategory } from "../../components/ButtonCategory";
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
 	width: 100%;
 	height: 28px;
 
@@ -15,20 +16,39 @@ export const Wrapper = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	gap: 1px;
+	overflow: auto;
+	white-space: nowrap;
 `;
 
 export const Categories = () => {
-    const [categories, { status, error }] = useCategories();
+	const [categories, { status, error }] = useCategories();
+	const [category, handleCategory] = useCategory();
 
-    return (
-        <Wrapper>
-            {error && <h2>Can't fetch data</h2>}
-            {status === "loading" && <h2>Loading...</h2>}
+	return (
+		<Wrapper>
+			{error && <h2>Can't fetch data</h2>}
+			{status === "loading" && <h2>Loading...</h2>}
 
-            {status === "received" &&
-                categories.map((c) => {
-                    return <ButtonCategory category={c}></ButtonCategory>;
-                })}
-        </Wrapper>
-    );
+			{status === "received" && (
+				<>
+					<ButtonCategory
+						key="all"
+						value="all"
+						handleCategory={handleCategory}
+						isActive={category === "all"}
+					></ButtonCategory>
+					{categories.map((item) => {
+						return (
+							<ButtonCategory
+								key={item}
+								value={item}
+								handleCategory={handleCategory}
+								isActive={category === item}
+							></ButtonCategory>
+						);
+					})}
+				</>
+			)}
+		</Wrapper>
+	);
 };
