@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { Main } from "./components/Main";
@@ -12,14 +12,34 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 
 function App() {
 	const [openedCart, setOpenedCart] = useState(false);
+	const popupRef = useRef();
+
+	useEffect(() => {
+		const handleOutsideClick = (event) => {
+			if (popupRef.current && !popupRef.current.contains(event.target)) {
+				setOpenedCart(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleOutsideClick);
+
+		return () => {
+			document.removeEventListener("mousedown", handleOutsideClick);
+		};
+	}, []);
 
 	return (
 		<>
-			{/* <Cart
-        opened={openedCart}
-        handle={() => setOpenedCart((curr) => !curr)}/> */}
+			<Cart
+				opened={openedCart}
+				handleModal={() => setOpenedCart((curr) => !curr)}
+				className="modal__cart"
+				popupRef={popupRef}
+			/>
 			<Main>
-				<ControlsPanel />
+				<ControlsPanel
+					handleModal={() => setOpenedCart((curr) => !curr)}
+				/>
 				<Routes>
 					<Route exact path="/" element={<HomePage />} />
 					<Route

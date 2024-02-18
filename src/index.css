@@ -12,27 +12,27 @@
 	--fw-xs: 500;
 	--fs-xs: 12px;
 	--lh-xs: 18px;
-	--ls-xs: -2%;
+	--ls-xs: -0.02em;
 
 	--fw-s: 500;
 	--fs-s: 14px;
 	--lh-s: 16px;
-	--ls-s: -2%;
+	--ls-s: -0.02em;
 
 	--fw-m: 600;
 	--fs-m: 15px;
 	--lh-m: 18px;
-	--ls-m: -3%;
+	--ls-m: -0.03em;
 
 	--fw-l: 500;
 	--fs-l: 18px;
 	--lh-l: 24px;
-	--ls-l: -2%;
+	--ls-l: -0.02em;
 
 	--fw-xl: 500;
 	--fs-xl: 24px;
 	--lh-xl: 28px;
-	--ls-xl: -2%;
+	--ls-xl: -0.02em;
 
 	/* Colors */
 	--colors-white: #ffffff;

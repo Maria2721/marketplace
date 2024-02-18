@@ -1,48 +1,48 @@
 {
-  "name": "marketplace",
-  "version": "0.1.0",
-  "author": "Maria Ivanova",
-  "homepage": "https://maria2721.github.io/marketplace",
-  "private": true,
-  "dependencies": {
-    "@reduxjs/toolkit": "^2.1.0",
-    "axios": "^1.6.7",
-    "lodash.throttle": "^4.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^9.1.0",
-    "react-router-dom": "^6.22.0",
-    "react-scripts": "5.0.1",
-    "styled-components": "^6.1.8",
-    "swiper": "^11.0.6"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "gh-pages": "^6.1.1"
-  }
+	"name": "marketplace",
+	"version": "0.1.0",
+	"author": "Maria Ivanova",
+	"homepage": "https://maria2721.github.io/marketplace",
+	"private": true,
+	"dependencies": {
+		"@reduxjs/toolkit": "^2.1.0",
+		"axios": "^1.6.7",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-redux": "^9.1.0",
+		"react-router-dom": "^6.22.0",
+		"react-scripts": "5.0.1",
+		"redux-persist": "^6.0.0",
+		"styled-components": "^6.1.8",
+		"swiper": "^11.0.6"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"gh-pages": "^6.1.1"
+	}
 }

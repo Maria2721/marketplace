@@ -204,11 +204,14 @@ export const Card = ({
 	price,
 	rating,
 	images,
+	addProductToCart,
 }) => {
 	const [isRead, setIsRead] = useState(false);
 	const [showReadMoreBtn, setShowReadMoreBtn] = useState(false);
 
-	let prevPrice = Math.ceil((price * Number("1" + discountPercentage)) / 100);
+	const prevPrice = Math.ceil(
+		(price * Number("1" + discountPercentage)) / 100
+	);
 
 	const ref = useRef(null);
 
@@ -278,7 +281,10 @@ export const Card = ({
 					)}
 				</CardDescription>
 				<CardPrice>
-					<ButtonPrice price={price} />
+					<ButtonPrice
+						price={price}
+						addProductToCart={addProductToCart}
+					/>
 					<span style={{ textDecoration: "line-through" }}>
 						${prevPrice}
 					</span>

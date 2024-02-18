@@ -31,9 +31,9 @@ export const Button = styled.button`
 	}
 `;
 
-export const ButtonPrice = ({ price }) => {
+export const ButtonPrice = ({ price, addProductToCart }) => {
 	return (
-		<Button onClick={() => console.log("Add product in cart!")}>
+		<Button onClick={addProductToCart}>
 			<Cart />
 			<span>${price}</span>
 		</Button>

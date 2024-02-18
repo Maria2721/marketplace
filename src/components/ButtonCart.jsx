@@ -32,9 +32,9 @@ export const Button = styled.button`
 	letter-spacing: var(--ls-m);
 `;
 
-export const ButtonCart = () => {
+export const ButtonCart = ({ handleModal }) => {
 	return (
-		<Button onClick={() => console.log("Open Cart!")}>
+		<Button onClick={handleModal}>
 			<Cart />
 			cart
 		</Button>

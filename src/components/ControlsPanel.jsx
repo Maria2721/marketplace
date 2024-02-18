@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 	padding: 18px 14px 18px 14px;
 `;
 
-export const ControlsPanel = () => {
+export const ControlsPanel = ({ handleModal }) => {
 	const [searchIsOpen, setSearchIsOpen] = useState(false);
 
 	return (
@@ -25,7 +25,7 @@ export const ControlsPanel = () => {
 				handleSearchIsOpen={() => setSearchIsOpen(!searchIsOpen)}
 			/>
 			{!searchIsOpen && <Categories />}
-			<ButtonCart />
+			<ButtonCart handleModal={handleModal} />
 		</Wrapper>
 	);
 };
