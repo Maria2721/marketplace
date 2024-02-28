@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/marketplace/static/css/main.55d3fde3.css",
-    "main.js": "/marketplace/static/js/main.087326b1.js",
+    "main.js": "/marketplace/static/js/main.fac1a53b.js",
     "static/media/star.svg": "/marketplace/static/media/star.1b2a28963dfdf00a9bbac614c1cb88e1.svg",
     "static/media/trashcan.svg": "/marketplace/static/media/trashcan.0b3e305ed2a05e61ca9a10a051a00fa0.svg",
     "static/media/search.svg": "/marketplace/static/media/search.79bc2ea531a9cabe7ec33e10fff0ebcb.svg",
@@ -12,10 +12,10 @@
     "static/media/minus.svg": "/marketplace/static/media/minus.f585777c5d3240c3b82c9a3f70b8daa1.svg",
     "static/media/point.svg": "/marketplace/static/media/point.324132cd377f3d16dfe8b8578bb8f581.svg",
     "main.55d3fde3.css.map": "/marketplace/static/css/main.55d3fde3.css.map",
-    "main.087326b1.js.map": "/marketplace/static/js/main.087326b1.js.map"
+    "main.fac1a53b.js.map": "/marketplace/static/js/main.fac1a53b.js.map"
   },
   "entrypoints": [
     "static/css/main.55d3fde3.css",
-    "static/js/main.087326b1.js"
+    "static/js/main.fac1a53b.js"
   ]
 }
