@@ -7,7 +7,6 @@ import { Cart } from "./features/cart/Cart";
 import { Footer } from "./components/Footer";
 
 import { HomePage } from "./pages/HomePage";
-import { CategoryPage } from "./pages/CategoryPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
 function App() {
@@ -42,10 +41,6 @@ function App() {
 				/>
 				<Routes>
 					<Route exact path="/" element={<HomePage />} />
-					<Route
-						path="?category=:category"
-						element={<CategoryPage />}
-					/>
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</Main>

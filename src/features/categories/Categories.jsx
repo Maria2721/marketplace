@@ -20,14 +20,24 @@ const Wrapper = styled.div`
 	white-space: nowrap;
 `;
 
+const Text = styled.div`
+	width: 100%;
+	padding: 18px 14px 18px 14px;
+	color: var(--colors-graydark);
+	font-weight: var(--fw-xl);
+	font-size: var(--fs-xl);
+	line-height: var(--lh-xl);
+	letter-spacing: var(--ls-xl);
+`;
+
 export const Categories = () => {
 	const [categories, { status, error }] = useCategories();
 	const [category, handleCategory] = useCategory();
 
 	return (
 		<Wrapper>
-			{error && <h2>Can't fetch data</h2>}
-			{status === "loading" && <h2>Loading...</h2>}
+			{error && <Text>Can't fetch data</Text>}
+			{status === "loading" && <Text>Loading...</Text>}
 
 			{status === "received" && (
 				<>

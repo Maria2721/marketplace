@@ -52,7 +52,9 @@ const setData = (state, action) => {
 const productsSlice = createSlice({
 	name: "@@products",
 	initialState,
-	reducers: {},
+	reducers: {
+		setInputError: setError,
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadProducts.pending, setLoading)
@@ -67,6 +69,7 @@ const productsSlice = createSlice({
 	},
 });
 
+export const { setInputError } = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;
 
 // selectors

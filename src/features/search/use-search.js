@@ -1,6 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setSearch, clearSearch } from "./search-slice";
-import { loadProducts, loadProductsBySearch } from "../products/products-slice";
+import {
+	loadProducts,
+	loadProductsBySearch,
+	setInputError,
+} from "../products/products-slice";
 
 export const useSearch = () => {
 	const dispatch = useDispatch();
@@ -8,12 +12,18 @@ export const useSearch = () => {
 
 	const handleSearch = (e) => {
 		dispatch(setSearch(e.target.value));
-		dispatch(loadProductsBySearch(e.target.value));
+		if (e.target.value.length > 3) {
+			dispatch(loadProductsBySearch(e.target.value));
+		} else if (search.length === 4 && e.target.value.length === 3) {
+			dispatch(loadProducts());
+		}
 	};
 
 	const cleanUpSearch = () => {
 		dispatch(clearSearch());
-		dispatch(loadProducts());
+		if (search.length > 3) {
+			dispatch(loadProducts());
+		}
 	};
 
 	return [search, handleSearch, cleanUpSearch];

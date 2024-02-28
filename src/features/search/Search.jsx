@@ -1,7 +1,13 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+
 import { ReactComponent as SearchIcon } from "../../assets/imgs/search.svg";
 import { ReactComponent as ClearIcon } from "../../assets/imgs/clear.svg";
+
 import { useSearch } from "./use-search";
+import { setCategory } from "../category/category-slice";
+import { loadProducts } from "../products/products-slice";
 
 const SearchInputContainer = styled.label`
 	width: 100%;
@@ -80,6 +86,33 @@ const SearchButton = styled.button`
 
 export const Search = ({ searchIsOpen, handleSearchIsOpen }) => {
 	const [search, handleSearch, cleanUpSearch] = useSearch();
+	const category = useSelector((state) => state.category);
+	const errorProducts = useSelector((state) => state.products.error);
+	const dispatch = useDispatch();
+
+	const clearAllURLParams = () => {
+		const urlParams = new URLSearchParams(window.location.search);
+
+		// Удаляем все параметры
+		urlParams.forEach((value, key) => {
+			urlParams.set(key, "");
+		});
+
+		// Обновляем URL без параметров
+		window.history.replaceState(null, "", `${window.location.pathname}`);
+	};
+
+	useEffect(() => {
+		if (searchIsOpen) {
+			clearAllURLParams();
+			if (category !== "all" || errorProducts) {
+				dispatch(loadProducts());
+			}
+			if (category !== "all") {
+				dispatch(setCategory("all"));
+			}
+		}
+	}, [searchIsOpen, dispatch, category, errorProducts]);
 
 	return (
 		<>
